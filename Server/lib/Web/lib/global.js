@@ -78,7 +78,8 @@ var L;
 	};
 	$(document).ready(function(e){
 		const LANG = {
-			'ko_KR': "한국어"
+			'ko_KR': "한국어",
+			'ja_JP': "日本語",
 		};
 		var $gn = $("#global-notice").hide();
 		var $c;
@@ -118,7 +119,7 @@ var L;
 		}).hotkey($("#quick-search-tf"), 13);
 	
 	// 계정
-		if($.cookie('lc') == "") $.cookie('lc', "ko_KR");
+		if($.cookie('lc') == "") $.cookie('lc', "ja_JP");
 		
 		if(global.profile.token){
 			$("#account-info").html(global.profile.title || global.profile.name).on('click', function(e){
