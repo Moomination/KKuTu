@@ -39,8 +39,12 @@ const FAKE_REDIS = {
 };
 
 Pub.ready = function(isPub){
-	var Redis	 = require("redis").createClient();
+	var Redis	 = require("redis").createClient({
+		host: GLOBAL.REDIS_HOST || "localhost",
+		port: GLOBAL.REDIS_PORT || 6379,
+	});
     var Pg = new PgPool({
+		host: GLOBAL.PG_HOST,
         user: GLOBAL.PG_USER,
         password: GLOBAL.PG_PASSWORD,
         port: GLOBAL.PG_PORT,
