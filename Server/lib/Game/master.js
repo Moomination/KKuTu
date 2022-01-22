@@ -355,7 +355,9 @@ exports.init = function(_SID, CHAN){
 				JLog.warn("Error on #" + key + " on ws: " + err.toString());
 			});
 			// 웹 서버
-			if(info.headers.host === GLOBAL.GAME_SERVER_HOST || info.headers.host.match(/^127\.0\.0\.2:/)){
+			const colon = info.headers.host.lastIndexOf(':');
+			const hostAddress = colon === -1 ? info.headers.host : info.headers.host.substring(0, colon);
+			if(hostAddress === GLOBAL.GAME_SERVER_HOST || info.headers.host.match(/^127\.0\.0\.2:/)){
 				if(WDIC[key]) WDIC[key].socket.close();
 				WDIC[key] = new KKuTu.WebServer(socket);
 				JLog.info(`New web server #${key}`);
